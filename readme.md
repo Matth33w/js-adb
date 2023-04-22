@@ -75,7 +75,7 @@ test();
     <li>
         <code>existsInDump(query, prop)</code>
         <ul>
-            <li><b>query</b> - The package name of the app you want to clear the cache</li>
+            <li><b>query</b> - The value you want to search</li>
             <li><b>prop (optional)</b> - Check the property of the node you want to read the value. By default it is "text".</li>
         </ul>
         <p>Returns: <i>A boolean that represents if the value was found or not.</i></p>
