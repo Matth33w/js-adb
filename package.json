@@ -1,6 +1,6 @@
 {
   "name": "js-adb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An ADB controller that you can send commands via JavaScript.",
   "main": "index.js",
   "scripts": {

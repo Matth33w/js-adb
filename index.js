@@ -154,6 +154,18 @@ class JSADB {
             });
         });
     }
+
+    installApp(appPath, device) {
+        return new Promise((resolve, reject) => {
+            exec(`adb.exe ${device ? `-s ${device}` : ""} install ${appPath}`, (error, stdout, stderr) => {
+                if(error) {
+                    reject(errorHandler(error));
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
 }
 
 module.exports = JSADB;

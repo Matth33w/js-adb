@@ -9,7 +9,7 @@
 <h1>How does it work?</h1>
 
 ```js
-// import it from a local folder
+// import it
 const JSADB = require("js-adb");
 
 // start an instance
@@ -56,6 +56,14 @@ test();
         <code>clearAppCache(appPackageName, device)</code>
         <ul>
             <li><b>appPackageName</b> - The package name of the app you want to clear the cache</li>
+            <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
+        </ul>
+        <p>Returns: <i>nothing.</i></p>
+    </li>
+    <li>
+        <code>installApp(appPath, device)</code>
+        <ul>
+            <li><b>appPath</b> - Path of your APK file</li>
             <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
         </ul>
         <p>Returns: <i>nothing.</i></p>
