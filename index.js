@@ -156,12 +156,4 @@ class JSADB {
     }
 }
 
-async function test() {
-    const instance = new JSADB();
-    await instance.dumpWindowXML();
-    console.log(await instance.existsInDump("Enjoy your favorite videos"));
-}
-
-test();
-
 module.exports = JSADB;
