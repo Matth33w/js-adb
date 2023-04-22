@@ -1,5 +1,5 @@
 <div align="center">
-    <img width="200" height="200" src="./logo.png" />
+    <img width="200" height="200" src="https://media.discordapp.net/attachments/1099435229334224948/1099435278298525727/logo.png?width=655&height=655" />
     <h3 align="center">JS-ADB</h3>
     <h4 align="center">Developed by Matth33w</h4>
 </div>
