@@ -7,13 +7,10 @@
 <p>It provides a simple and easy-to-use interface for executing ADB commands from your JavaScript code. You can use the library to perform tasks such as capturing screenshots, tapping on screen, typing, dumping the current window XML, and more.</p>
 <p>JS-ADB is designed for developers who work with Android devices and want to automate tasks using JavaScript. It can be used in a variety of scenarios, including testing, development, and automation.</p>
 <h1>How does it work?</h1>
-<p>This is not a NPM module! At least, not yet. So you gotta import it manually to your project.</p>
-<p>Why? Because for now this tool is for my personal use only since it still is in a very experimental state.</p>
-<p>But don't worry.. It's very easy to use. Just make sure you have at least one android emulator running on the background, so you can start sending your commands.</p>
 
 ```js
 // import it from a local folder
-const JSADB = require("./js-adb");
+const JSADB = require("js-adb");
 
 // start an instance
 const instance = new JSADB();
