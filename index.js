@@ -14,6 +14,8 @@ Developed by Matheus Ibrahim (Matth33w) - 2023
 */
 
 const { exec } = require("child_process");
+const fs = require("fs");
+const readline = require("readline");
 const { errorHandler } = require("./utils");
 
 class JSADB {
@@ -68,6 +70,25 @@ class JSADB {
                     resolve();
                 });
             });
+        });
+    }
+
+    existsInDump(query, prop) {
+        return new Promise(async (resolve, reject) => {
+            if(!fs.existsSync(__dirname + "/window_dump.xml")) {
+                reject(errorHandler({code: -1, message: "You need to dump the XML before making a query on it."}));
+            } else {
+                const rl = readline.createInterface(fs.createReadStream(__dirname + "/window_dump.xml"));
+                let text = "";
+                
+                rl.on("line", textStream => {
+                    text += textStream;
+                });
+
+                rl.on("close", () => {
+                    resolve(text.indexOf(prop ? `${prop}="${query}"` : `text="${query}"`) > -1 ? true : false);
+                });
+            }
         });
     }
 
@@ -134,5 +155,13 @@ class JSADB {
         });
     }
 }
+
+async function test() {
+    const instance = new JSADB();
+    await instance.dumpWindowXML();
+    console.log(await instance.existsInDump("Enjoy your favorite videos"));
+}
+
+test();
 
 module.exports = JSADB;

@@ -22,14 +22,14 @@ const instance = new JSADB();
 // it is equivalent to the -s parameter on the ADB command line.
 const deviceName = "emulator-5545";
 
-// don't know which devices are available? no need to worry no more..
-console.log(instance.getDeviceList());
-
 // functions works asynchronously, so make sure to add "await" 
 async function test() {
     await instance.screenshot("picture.png", deviceName);
     await instance.dumpWindowXML(deviceName);
     console.log(await instance.listOfInstalledApps());
+
+    // don't know which devices are available? no need to worry no more..
+    console.log(await instance.getDeviceList());
 }
 
 test();
@@ -62,6 +62,23 @@ test();
             <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
         </ul>
         <p>Returns: <i>nothing.</i></p>
+    </li>
+    <hr/>
+    <li>
+        <code>dumpWindowXML(device)</code>
+        <ul>
+            <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
+        </ul>
+        <p>Returns: <i>A <code>window_dump.xml</code> file will be available at the js-adb root folder.</i></p>
+    </li>
+    <hr/>
+    <li>
+        <code>existsInDump(query, prop)</code>
+        <ul>
+            <li><b>query</b> - The package name of the app you want to clear the cache</li>
+            <li><b>prop (optional)</b> - Check the property of the node you want to read the value. By default it is "text".</li>
+        </ul>
+        <p>Returns: <i>A boolean that represents if the value was found or not.</i></p>
     </li>
     <hr/>
     <li>
