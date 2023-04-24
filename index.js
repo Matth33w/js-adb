@@ -31,6 +31,18 @@ class JSADB {
         });
     }
 
+    swipe(xPoint1, yPoint1, xPoint2, yPoint2, durationInMs, device) {
+        return new Promise((resolve, reject) => {
+            exec(`adb.exe ${device ? `-s ${device}` : ""} shell input swipe ${xPoint1} ${yPoint1} ${xPoint2} ${yPoint2} ${durationInMs}`, (error, stdout, stderr) => {
+                if(error) {
+                    reject(errorHandler(error));
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
+
     type(text, device) {
         return new Promise((resolve, reject) => {
             exec(`adb.exe ${device ? `-s ${device}` : ""} shell input text "${text}"`, (error, stdout, stderr) => {
@@ -162,6 +174,88 @@ class JSADB {
                     reject(errorHandler(error));
                 } else {
                     resolve();
+                }
+            });
+        });
+    }
+
+    getBatteryDetails(device) {
+        return new Promise((resolve, reject) => {
+            exec(`adb.exe ${device ? `-s ${device}` : ""} shell dumpsys battery`, (error, stdout, stderr) => {
+                if(error) {
+                    reject(errorHandler(error));
+                } else {
+                    const textLines = stdout.replace(/\r/g, "").split("\n");
+                    let finalObject = {};
+
+                    for(var i = 1; i < textLines.length; i++) {
+                        if(textLines[i].trim() != "") {
+                            const currentTextLine = textLines[i].replace(/\s\s/g, "");
+                            const propAndValueSeparator = currentTextLine.split(":");
+
+                            let prop = propAndValueSeparator[0];
+                            let value = propAndValueSeparator[1].substring(1, propAndValueSeparator[1].length);
+
+                            switch(prop) {
+                                case "AC powered": {
+                                    prop = "acPowered";
+                                    break;
+                                }
+
+                                case "USB powered": {
+                                    prop = "usbPowered";
+                                    break;
+                                }
+
+                                case "Wireless powered": {
+                                    prop = "wirelessPowered";
+                                    break;
+                                }
+
+                                case "Max charging current": {
+                                    prop = "maxChargingCurrent";
+                                    break;
+                                }
+
+                                case "Max charging voltage": {
+                                    prop = "maxChargingVoltage";
+                                    break;
+                                }
+
+                                case "Charge counter": {
+                                    prop = "chargeCounter";
+                                    break;
+                                }
+                            }
+
+                            if(!isNaN(value)) {
+                                value = Number(value);
+                            }
+
+                            if(value == "true" || value == "false") {
+                                value = Boolean(value);
+                            }
+
+                            finalObject[prop] = value;
+                        }
+                    }
+                    resolve(finalObject);
+                }
+            });
+        });
+    }
+
+    serviceCheck(service, device) {
+        return new Promise((resolve, reject) => {
+            exec(`adb.exe ${device ? `-s ${device}` : ""} shell service check ${service}`, (error, stdout, stderr) => {
+                if(error) {
+                    reject(errorHandler(error));
+                } else {
+                    if(stdout.indexOf("not found") > -1) {
+                        resolve(false);
+                    } else {
+                        resolve(true);
+                    }
                 }
             });
         });

@@ -44,6 +44,19 @@ test();
     </li>
     <hr/>
     <li>
+        <code>swipe(xPoint1, yPoint1, xPoint2, yPoint2, durationInMs, device)</code>
+        <ul>
+            <li><b>xPoint1</b> - Initial X position of the swipe</li>
+            <li><b>yPoint1</b> - Initial Y position of the swipe</li>
+            <li><b>xPoint2</b> - Final X position of the swipe</li>
+            <li><b>yPoint2</b> - Final Y position of the swipe</li>
+            <li><b>durationInMs</b> - Swipe duration in milliseconds</li>
+            <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
+        </ul>
+        <p>Returns: <i>nothing.</i></p>
+    </li>
+    <hr/>
+    <li>
         <code>type(text, device)</code>
         <ul>
             <li><b>text</b> - The text value to type</li>
@@ -60,6 +73,7 @@ test();
         </ul>
         <p>Returns: <i>nothing.</i></p>
     </li>
+    <hr/>
     <li>
         <code>installApp(appPath, device)</code>
         <ul>
@@ -74,7 +88,7 @@ test();
         <ul>
             <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
         </ul>
-        <p>Returns: <i>A <code>window_dump.xml</code> file will be available at the js-adb root folder.</i></p>
+        <p>Returns: <i>A <code>window_dump.xml</code> file will be available at the root folder if succeeded.</i></p>
     </li>
     <hr/>
     <li>
@@ -92,7 +106,7 @@ test();
             <li><b>filename (optional)</b> - The name to save the file</li>
             <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
         </ul>
-        <p>Returns: <i>The file will be available at the js-adb root folder if succeeded.</i></p>
+        <p>Returns: <i>The file will be available at the root folder if succeeded.</i></p>
     </li>
     <hr/>
     <li>
@@ -114,6 +128,23 @@ test();
             <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
         </ul>
         <p>Returns: <i>A string array with the names of the installed apps.</i></p>
+    </li>
+    <hr/>
+    <li>
+        <code>getBatteryDetails(device)</code>
+        <ul>
+            <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
+        </ul>
+        <p>Returns: <i>An object with the battery details.</i></p>
+    </li>
+    <hr/>
+    <li>
+        <code>serviceCheck(service, device)</code>
+        <ul>
+            <li><b>service</b> - The service you want to check</li>
+            <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
+        </ul>
+        <p>Returns: <i>A boolean representing if the service was found or not.</i></p>
     </li>
     <hr/>
 </ul>
