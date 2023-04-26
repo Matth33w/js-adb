@@ -223,6 +223,22 @@ class JSADB {
         });
     }
 
+    connectDevice(device) {
+        return new Promise((resolve, reject) => {
+            exec(`adb.exe connect ${device}`, (error, stdout, stderr) => {
+                if(error) {
+                    reject(errorHandler(error));
+                } else {
+                    if(stdout.indexOf("connected") > -1) {
+                        resolve(true);
+                    }
+
+                    resolve(false);
+                }
+            });
+        });
+    }
+
     waitInMilliseconds(time) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {

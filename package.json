@@ -1,11 +1,8 @@
 {
   "name": "js-adb",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An ADB controller that you can send commands via JavaScript.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Matth33w",
   "license": "ISC"
 }

@@ -165,6 +165,14 @@ test();
     </li>
     <hr/>
     <li>
+        <code>connectDevice(device)</code>
+        <ul>
+            <li><b>device</b> - Device URL in localhost to connect.</li>
+        </ul>
+        <p>Returns: <i>A boolean representing if the device was connected or not.</i></p>
+    </li>
+    <hr/>
+    <li>
         <code>getBatteryDetails(device)</code>
         <ul>
             <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
