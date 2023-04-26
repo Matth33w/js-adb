@@ -170,11 +170,7 @@ class JSADB {
                     resolve(false);
                 }
             } catch(err) {
-                if(err?.code) {
-                    reject(errorHandler(err));
-                } else {
-                    reject(errorHandler({code: -2, message: err.toString()}));
-                }
+                reject(err);
             }
         });
     }
