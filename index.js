@@ -149,15 +149,51 @@ class JSADB {
                 if(error) {
                     reject(errorHandler(error));
                 } else {
-                    resolve(stdout.split("\n"));
+                    resolve(stdout.replace(/\r/g, "").replace(/package:/g, "").split("\n"));
                 }
             });
+        });
+    }
+
+    appExists(appPackageName, device) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const installedApps = await this.listOfInstalledApps(device ? device : undefined);
+
+                if(appPackageName.trim() == "") {
+                    reject(errorHandler({code: -1, message: "The app package name is mandatory."}));
+                }
+
+                if(installedApps.indexOf(appPackageName) > -1) {
+                    resolve(true);
+                } else {
+                    resolve(false);
+                }
+            } catch(err) {
+                if(err?.code) {
+                    reject(errorHandler(err));
+                } else {
+                    reject(errorHandler({code: -2, message: err.toString()}));
+                }
+            }
         });
     }
 
     clearAppCache(appPackageName, device) {
         return new Promise((resolve, reject) => {
             exec(`adb.exe ${device ? `-s ${device}` : ""} shell pm clear ${appPackageName}`, (error, stdout, stderr) => {
+                if(error) {
+                    reject(errorHandler(error));
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
+
+    openApp(appPackageName, device) {
+        return new Promise((resolve, reject) => {
+            exec(`adb.exe ${device ? `-s ${device}` : ""} shell monkey -p ${appPackageName} 1`, (error, stdout, stderr) => {
                 if(error) {
                     reject(errorHandler(error));
                 } else {
@@ -176,6 +212,26 @@ class JSADB {
                     resolve();
                 }
             });
+        });
+    }
+
+    goToHome(device) {
+        return new Promise((resolve, reject) => {
+            exec(`adb.exe ${device ? `-s ${device}` : ""} shell input keyevent KEYCODE_HOME`, (error, stdout, stderr) => {
+                if(error) {
+                    reject(errorHandler(error));
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
+
+    waitInMilliseconds(time) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve();
+            }, time);
         });
     }
 

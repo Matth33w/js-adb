@@ -75,15 +75,6 @@ test();
     </li>
     <hr/>
     <li>
-        <code>installApp(appPath, device)</code>
-        <ul>
-            <li><b>appPath</b> - Path of your APK file</li>
-            <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
-        </ul>
-        <p>Returns: <i>nothing.</i></p>
-    </li>
-    <hr/>
-    <li>
         <code>dumpWindowXML(device)</code>
         <ul>
             <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
@@ -123,11 +114,54 @@ test();
     </li>
     <hr/>
     <li>
+        <code>waitInMilliseconds(time)</code>
+        <ul>
+            <li><b>time</b> - The time to wait before executing the next instruction in milliseconds</li>
+        </ul>
+        <p>Returns: <i>nothing.</i></p>
+    </li>
+    <hr/>
+    <li>
+        <code>installApp(appPath, device)</code>
+        <ul>
+            <li><b>appPath</b> - Path of your APK file</li>
+            <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
+        </ul>
+        <p>Returns: <i>nothing.</i></p>
+    </li>
+    <hr/>
+    <li>
+        <code>openApp(appPackageName, device)</code>
+        <ul>
+            <li><b>appPackageName</b> - Package name of the app you want to open</li>
+            <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
+        </ul>
+        <p>Returns: <i>nothing.</i></p>
+    </li>
+    <hr/>
+    <li>
+        <code>goToHome(device)</code>
+        <ul>
+            <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
+        </ul>
+        <p>Returns: <i>nothing.</i></p>
+    </li>
+    <hr/>
+    <li>
         <code>listOfInstalledApps(device)</code>
         <ul>
             <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
         </ul>
         <p>Returns: <i>A string array with the names of the installed apps.</i></p>
+    </li>
+    <hr/>
+    <li>
+        <code>appExists(appPackageName, device)</code>
+        <ul>
+            <li><b>appPackageName</b> - Package name of the app you want to check</li>
+            <li><b>device (optional)</b> - Set a specific device name in case of having multiple instances</li>
+        </ul>
+        <p>Returns: <i>A boolean representing if the app exists on the device or not.</i></p>
     </li>
     <hr/>
     <li>
